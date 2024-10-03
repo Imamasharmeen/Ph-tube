@@ -26,10 +26,17 @@ const displayVideos = (videos) =>{
         const card = document.createElement('div');
         card.classList = 'card card-compact'
         card.innerHTML=`
-        <figure class="h-[200px]">
-            <img class="w-full h-full object-cover"
+        <figure class="h-[200px] relative">
+            <img class="w-full h-full object-cover rounded-2xl"
             src=${video.thumbnail}
             alt="Shoes" />
+            ${
+                video.others.posted_date?.length === 0?
+                "":
+                `<span class="absolute bottom-4 right-4 bg-black rounded-xl text-white p-1">${video.others.posted_date}</span>`
+
+            }
+            
         </figure>
         <div class="py-2 flex gap-3">
             <div>
@@ -39,7 +46,12 @@ const displayVideos = (videos) =>{
                 <h2 class=" font-bold">${video.title}</h2>
                 <div class="py-2 flex gap-3 text-center">
                     <p class="text-gray-400">${video.authors[0].profile_name}</p>
-                    <img class="w-5" src="https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png">
+                    ${
+                        video.authors[0].verified === true?
+                        ` <img class="w-5" src="https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png">`
+                        : ""
+                    }
+                </div>    
                 
             </div>
         </div>
