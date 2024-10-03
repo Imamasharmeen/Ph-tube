@@ -14,6 +14,9 @@ const loadVideos = () => {
 
 };
 
+
+
+
 const displayVideos = (videos) =>{
     //console.log(videos);
     const videoContainer = document.getElementById('videos')
@@ -23,25 +26,28 @@ const displayVideos = (videos) =>{
         const card = document.createElement('div');
         card.classList = 'card card-compact'
         card.innerHTML=`
-        <figure>
-            <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+        <figure class="h-[200px]">
+            <img class="w-full h-full object-cover"
+            src=${video.thumbnail}
             alt="Shoes" />
         </figure>
-        <div class="card-body">
-            <h2 class="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
+        <div class="py-2 flex gap-3">
+            <div>
+            <img src= ${video.authors[0].profile_picture} class="w-10 h-10 rounded-full object-cover">
+            </div>
+            <div>
+                <h2 class=" font-bold">${video.title}</h2>
+                <div class="py-2 flex gap-3 text-center">
+                    <p class="text-gray-400">${video.authors[0].profile_name}</p>
+                    <img class="w-5" src="https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png">
+                
             </div>
         </div>
+        
         `;
         videoContainer.append(card)
     })
 }
-
-    
-
 
 
 //create displayCategories 
