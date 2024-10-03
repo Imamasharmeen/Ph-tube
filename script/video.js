@@ -1,3 +1,14 @@
+ //get Hour and rest seconds
+
+ function getTimeString(time) {
+   
+    const hour = parseInt(time / 3600);
+    let remainingSecond = time % 3600;
+    const minute = parseInt(remainingSecond / 60);
+    remainingSecond = remainingSecond % 60;
+    return `${hour} hour ${minute} minute ${remainingSecond} second ago `;
+} 
+
 //create loadCategories 
 const loadCategories = () => {
     fetch('https://openapi.programming-hero.com/api/phero-tube/categories')
@@ -13,8 +24,6 @@ const loadVideos = () => {
     .catch((error) => console.log(error));
 
 };
-
-
 
 
 const displayVideos = (videos) =>{
@@ -33,7 +42,7 @@ const displayVideos = (videos) =>{
             ${
                 video.others.posted_date?.length === 0?
                 "":
-                `<span class="absolute bottom-4 right-4 bg-black rounded-xl text-white p-1">${video.others.posted_date}</span>`
+                `<span class="absolute bottom-4 right-4 bg-black rounded-xl text-white p-1 text-xs">${getTimeString(video.others.posted_date)}</span>`
 
             }
             
